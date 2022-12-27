@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active">Evaluate Enterprise</a>
+
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <ng-container *ngIf="accountService.currentUser$ | async">
+          <li class="nav-item" *ngIf="isToShow()">
+            <a class="nav-link" routerLink="/enterprises-list" routerLinkActive="active">Enterprises</a>
+          </li>
+        </ng-container>
+      </ul>
+
+    <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+      <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.name | titlecase}}</a>
+      <div class="dropdown-menu mt-3" *dropdownMenu>
+        <a class="dropdown-item">Edit Profile</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="logout()">Logout</a>
+      </div>
+    </div>
+
+      <form *ngIf="(accountService.currentUser$ | async) === null"
+            #loginForm="ngForm" class="d-flex" role="search" (ngSubmit)="login()" autocomplete="off">
+
+        <input
+          name="email"
+          [(ngModel)]="model.email"
+          class="form-control me-2"
+          type="text"
+          placeholder="Email">
+        <input
+          name="password"
+          [(ngModel)]="model.password"class="form-control me-2"
+          type="password"
+          placeholder="Password">
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
+
+      </form>
+  </div>
+</nav>

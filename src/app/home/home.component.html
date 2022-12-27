@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div *ngIf="!registerMode" style="text-align: center;">
+    <div style="margin-top: 100px">
+      <h1 *ngIf="!registerMode">Evaluate Enterprises</h1>
+      <p class="lead" *ngIf="!registerMode">Evaluate the enterprises so that we can know your opinion!</p>
+    </div>
+
+    <div class="text-center" *ngIf="isUserLogged()">
+      <but (click)="registerToggle()" class="btn btn-primary btn-lg mr-2" style="margin-right: 4px">Register</but>
+      <but class="btn btn-info btn-lg" style="color: white">Learn more</but>
+    </div>
+
+    <div *ngIf="isUserLogged()" style="text-align: center; scale: 200%; margin-top: 200px">
+      <h6 *ngIf="isVoted()">You already voted! Thanks for you opinion!</h6>
+    </div>
+
+    <div *ngIf="isToShow()">
+      <button class="btn btn-success mr-2"
+              *ngIf="!isUserLogged()"
+              style="margin-right: 4px; margin-top: 50px"
+              type="submit"
+              (click)="router.navigate(['/enterprises-list']);">
+        Click here to vote
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="registerMode" class="container">
+    <div class="row justify-content-center">
+      <div class="text-center col-4">
+        <app-register (cancelRegister)="cancelRegisterModel($event)"></app-register>
+      </div>
+    </div>
+  </div>
+</div>

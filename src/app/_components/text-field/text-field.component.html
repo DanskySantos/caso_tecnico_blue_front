@@ -1,0 +1,9 @@
+<div class="form-group" [formGroup]="form" *ngIf="form.controls[name]" [class.has-error]="form.controls[name].invalid">
+  <label class="control-label" [for]="name" *ngIf="label">{{label}}</label>
+  <input pInputText formControlName="{{name}}" [type]="type" [id]="name" [name]="name" class="form-control" [(ngModel)]="model" [required]="required" [maxlength]="maxlength" [placeholder]="placeholder"/>
+  <div *ngIf="form.controls[name].errors">
+    <div *ngIf="form.controls[name].errors.required && (form.controls[name].touched || form.controls[name].dirty || (!form.controls[name].valid))" class="text-danger">
+      O campo <b>{{label}}</b> é obrigatório.
+    </div>
+  </div>
+</div>

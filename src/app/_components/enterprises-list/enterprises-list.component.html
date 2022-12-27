@@ -1,0 +1,23 @@
+<div class="card-group" style="justify-content: space-between" *ngIf="showMyMessage">
+  <div *ngFor="let enterprise of enterprisesList" class="card enterprises-card">
+      <div>
+        <img class="card-img-top"
+             [src]=enterprise.image
+             alt="Card image cap"
+             style="height: 350px; width: content-box; text-align: center; border-radius: 10px">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{enterprise.name}}</h5>
+        <div style="text-align: center; padding-top: 40px">
+          <button href="#" type="submit" (click)="vote(enterprise.enumName)" class="btn btn-primary">Vote!</button>
+        </div>
+      </div>
+    <br>
+  </div>
+</div>
+<div style="text-align: center; margin-top: 100px" *ngIf="showMyMessage">
+  <h5>You only have one vote! Choose wisely!</h5>
+</div>
+<div *ngIf="!showMyMessage" style="text-align: center; scale: 200%; margin-top: 200px">
+  <h6>You already voted! Thanks for you opinion!</h6>
+</div>
